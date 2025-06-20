@@ -1,6 +1,7 @@
 # xarm_ros2
 
 For simplified Chinese version: [简体中文版](./ReadMe_cn.md)
+testing
 
 ## 1. Introduction
 
