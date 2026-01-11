@@ -76,7 +76,8 @@ enum SPACEMOUSE_WIRELESS_BUTTON
 JoyToServoPub::JoyToServoPub(const rclcpp::NodeOptions& options)
   : Node("joy_to_twist_publisher", options), 
     dof_(7), ros_queue_size_(10), joystick_type_(JOYSTICK_XBOX360_WIRED), initialized_status_(10),
-    joy_topic_("/joy"),
+    // joy_topic_("/joy"),
+    joy_topic_("spacenav/joy"),
     cartesian_command_in_topic_("/servo_server/delta_twist_cmds"), 
     joint_command_in_topic_("/servo_server/delta_joint_cmds"), 
     robot_link_command_frame_("link_base"), 
@@ -227,7 +228,7 @@ bool JoyToServoPub::_convert_spacemouse_wireless_joy_to_cmd(const std::vector<fl
     std::unique_ptr<geometry_msgs::msg::TwistStamped>& twist)
 {
     twist->twist.linear.x = axes[SPM_STICK_X];
-    twist->twist.linear.y = axes[SPM_STICK_Y];
+    twist->twist.linear.y = -axes[SPM_STICK_Y];
     twist->twist.linear.z = axes[SPM_STICK_Z];
     
     twist->twist.angular.x = axes[SPM_STICK_ROLL];
